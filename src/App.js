@@ -11,6 +11,7 @@ import Orange from './textures/orange-square-md.png'
 import Red from './textures/red.png'
 import Yellow from './textures/yellow-square-2-md.png'
 import { useRef } from 'react';
+import Cube from './components/Cube';
 
 
 
@@ -33,7 +34,7 @@ function App() {
       }
       return(
         <Suspense fallback={null}>
-        <mesh ref={cube} rotateX={0.01}  position={[2,1,0]}>
+        <mesh ref={cube}  position={[3,2,2]}>
           <boxGeometry args={[1,1,1]}/>
           <meshStandardMaterial map={texture_1} attach={'material-0'}/>
           <meshStandardMaterial map={texture_2} attach={'material-1'}/>
@@ -54,7 +55,8 @@ function App() {
 
       <ambientLight  intensity={0.5}/>
       <spotLight  position={[10,15,10]} angle={0.3}/>
-      <MyCube />
+      
+      
       
       <Suspense fallback={null}>
         <mesh ref={mesh}  position={[1,1,0]}>
@@ -134,7 +136,7 @@ function App() {
         </mesh>
       </Suspense>
       
-      
+      <Cube/>
     </Canvas>
   );
 }
