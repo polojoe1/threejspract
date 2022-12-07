@@ -12,7 +12,8 @@ import Red from './textures/red.png'
 import Yellow from './textures/yellow-square-2-md.png'
 import { useRef } from 'react';
 import Cube from './components/Cube';
-
+import { degToRad } from 'three/src/math/MathUtils';
+import RealCube from './components/RealCube';
 
 
 
@@ -23,33 +24,17 @@ function App() {
   const texture_4 = useLoader(TextureLoader, Orange)
   const texture_5 = useLoader(TextureLoader, Red)
   const texture_6 = useLoader(TextureLoader, Yellow)
-  const mesh = useRef()
-  
-  const MyCube = ()=>{
+  let trigger = false
     const cube = useRef();
-    useFrame(()=>{
-      if(1){
-        //cube.current.rotateX+= 0.01;
-        
-      }
-      return(
-        <Suspense fallback={null}>
-        <mesh ref={cube}  position={[3,2,2]}>
-          <boxGeometry args={[1,1,1]}/>
-          <meshStandardMaterial map={texture_1} attach={'material-0'}/>
-          <meshStandardMaterial map={texture_2} attach={'material-1'}/>
-          <meshStandardMaterial map={texture_3} attach={'material-2'}/>
-          <meshStandardMaterial map={texture_4}  attach={'material-3'}/>
-          <meshStandardMaterial map={texture_5}  attach={'material-4'}/>
-          <meshStandardMaterial map={texture_6}  attach={'material-5'}/>
-        </mesh>
-      </Suspense>
-      )
-    })
-  }
+    const cube2 = useRef()
+    const cube3 = useRef()
+    const cube4 = useRef()
+    let frame = 0
 
   return (
-    <Canvas style={{backgroundColor:'black',height:'100vh'}}>
+    <>
+    
+    <Canvas style={{backgroundColor:'black',height:'100vh', position:'absolute'}}>
       <Stars />
       <OrbitControls/>
 
@@ -58,86 +43,11 @@ function App() {
       
       
       
-      <Suspense fallback={null}>
-        <mesh ref={mesh}  position={[1,1,0]}>
-          <boxGeometry args={[1,1,1]}/>
-          <meshStandardMaterial map={texture_1} attach={'material-0'}/>
-          <meshStandardMaterial map={texture_2} attach={'material-1'}/>
-          <meshStandardMaterial map={texture_3} attach={'material-2'}/>
-          <meshStandardMaterial map={texture_4}  attach={'material-3'}/>
-          <meshStandardMaterial map={texture_5}  attach={'material-4'}/>
-          <meshStandardMaterial map={texture_6}  attach={'material-5'}/>
-        </mesh>
-        <mesh   position={[0,0,0]}>
-          <boxGeometry args={[1,1,1]}/>
-          <meshStandardMaterial map={texture_1} attach={'material-0'}/>
-          <meshStandardMaterial map={texture_2} attach={'material-1'}/>
-          <meshStandardMaterial map={texture_3} attach={'material-2'}/>
-          <meshStandardMaterial map={texture_4}  attach={'material-3'}/>
-          <meshStandardMaterial map={texture_5}  attach={'material-4'}/>
-          <meshStandardMaterial map={texture_6}  attach={'material-5'}/>
-        </mesh>
-        <mesh   position={[0,0,1]}>
-          <boxGeometry args={[1,1,1]}/>
-          <meshStandardMaterial map={texture_1} attach={'material-0'}/>
-          <meshStandardMaterial map={texture_2} attach={'material-1'}/>
-          <meshStandardMaterial map={texture_3} attach={'material-2'}/>
-          <meshStandardMaterial map={texture_4}  attach={'material-3'}/>
-          <meshStandardMaterial map={texture_5}  attach={'material-4'}/>
-          <meshStandardMaterial map={texture_6}  attach={'material-5'}/>
-        </mesh>
-        <mesh   position={[0,1,1]}>
-          <boxGeometry args={[1,1,1]}/>
-          <meshStandardMaterial map={texture_1} attach={'material-0'}/>
-          <meshStandardMaterial map={texture_2} attach={'material-1'}/>
-          <meshStandardMaterial map={texture_3} attach={'material-2'}/>
-          <meshStandardMaterial map={texture_4}  attach={'material-3'}/>
-          <meshStandardMaterial map={texture_5}  attach={'material-4'}/>
-          <meshStandardMaterial map={texture_6}  attach={'material-5'}/>
-        </mesh>
-        <mesh   position={[1,1,1]}>
-          <boxGeometry args={[1,1,1]}/>
-          <meshStandardMaterial map={texture_1} attach={'material-0'}/>
-          <meshStandardMaterial map={texture_2} attach={'material-1'}/>
-          <meshStandardMaterial map={texture_3} attach={'material-2'}/>
-          <meshStandardMaterial map={texture_4}  attach={'material-3'}/>
-          <meshStandardMaterial map={texture_5}  attach={'material-4'}/>
-          <meshStandardMaterial map={texture_6}  attach={'material-5'}/>
-        </mesh>
-        <mesh   position={[1,0,1]}>
-          <boxGeometry args={[1,1,1]}/>
-          <meshStandardMaterial map={texture_1} attach={'material-0'}/>
-          <meshStandardMaterial map={texture_2} attach={'material-1'}/>
-          <meshStandardMaterial map={texture_3} attach={'material-2'}/>
-          <meshStandardMaterial map={texture_4}  attach={'material-3'}/>
-          <meshStandardMaterial map={texture_5}  attach={'material-4'}/>
-          <meshStandardMaterial map={texture_6}  attach={'material-5'}/>
-        </mesh>
-      </Suspense>
-      <Suspense fallback={null}>
-      <mesh   position={[0,1,0]}>
-          <boxGeometry args={[1,1,1]}/>
-          <meshStandardMaterial map={texture_1} attach={'material-0'}/>
-          <meshStandardMaterial map={texture_2} attach={'material-1'}/>
-          <meshStandardMaterial map={texture_3} attach={'material-2'}/>
-          <meshStandardMaterial map={texture_4}  attach={'material-3'}/>
-          <meshStandardMaterial map={texture_5}  attach={'material-4'}/>
-          <meshStandardMaterial map={texture_6}  attach={'material-5'}/>
-        </mesh>
-
-        <mesh   position={[1,0,0]}>
-          <boxGeometry args={[1,1,1]}/>
-          <meshStandardMaterial map={texture_1} attach={'material-0'}/>
-          <meshStandardMaterial map={texture_2} attach={'material-1'}/>
-          <meshStandardMaterial map={texture_3} attach={'material-2'}/>
-          <meshStandardMaterial map={texture_4}  attach={'material-3'}/>
-          <meshStandardMaterial map={texture_5}  attach={'material-4'}/>
-          <meshStandardMaterial map={texture_6}  attach={'material-5'}/>
-        </mesh>
-      </Suspense>
+      <RealCube/>
       
-      <Cube/>
+      {/* <Cube/> */}
     </Canvas>
+    </>
   );
 }
 
