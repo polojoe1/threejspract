@@ -64,11 +64,11 @@ const Cube = (props) => {
             frame = 0;
             }
             }
-        }
+        }//good practice
     )
   return (
     <>
-    
+  
     <mesh ref={cube}  onClick={()=>{trigger=true}} position={[3,3,3]}>
         
     <boxGeometry  args={[1,1,1]}/>
