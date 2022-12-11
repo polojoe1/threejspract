@@ -11,7 +11,7 @@ import { useRef } from 'react';
 import { useLoader, useFrame  } from 'react-three-fiber'
 import { degToRad } from 'three/src/math/MathUtils';
 import {Text} from '@react-three/drei'
-
+//clean up code later
 const RealCube = (props) => {
     const texture_1 = useLoader(TextureLoader,White)
   const texture_2 = useLoader(TextureLoader,Blue)
