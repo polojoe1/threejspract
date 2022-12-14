@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { TextureLoader } from 'three';
+import {  TextureLoader } from 'three';
 import { Suspense } from 'react';
 import White from '../textures/white.png'
 import Blue from '../textures/blue-square-2-md.png'
@@ -8,7 +8,7 @@ import Orange from '../textures/orange-square-md.png'
 import Red from '../textures/red.png'
 import Yellow from '../textures/yellow-square-2-md.png'
 import { useRef } from 'react';
-import { useLoader, useFrame  } from 'react-three-fiber'
+import { useLoader, useFrame } from 'react-three-fiber'
 import { degToRad } from 'three/src/math/MathUtils';
 import {Text} from '@react-three/drei'
 //clean up code later
@@ -31,6 +31,10 @@ const RealCube = (props) => {
     const cube7 = useRef()
     const cube8 = useRef()
     const [allCubes,setAllCubes] = useState([cube,cube2,cube3,cube4,cube5,cube6,cube7,cube8])
+
+
+    
+
     let frame = 0
     useFrame(()=>{
         if(triggerBackRight){
@@ -184,6 +188,7 @@ const RealCube = (props) => {
                         }
                     }
                     
+                    
                     //console.log(dummy)
 
                     if(frame===8){
@@ -207,7 +212,13 @@ const RealCube = (props) => {
                     // cube.current.position.x = cube2.current.position.x
                     // cube.current.position.y = cube2.current.position.y
                     // cube.current.position.z = cube2.current.position.z
-                    
+                    const top=()=>{
+                      <group>
+                        {topSquares.map((el)=>{return el})}
+                      </group>
+                    }
+                    top()
+                    console.log(top())
                     topSquares[0].current.rotation.y+= degToRad(10)
                     //1.569  
                     
@@ -256,6 +267,7 @@ const RealCube = (props) => {
           <meshStandardMaterial map={texture_5}  attach={'material-4'}/>
           <meshStandardMaterial map={texture_6}  attach={'material-5'}/>
         </mesh>
+        
         <mesh ref={cube2}    position={[0,1,0]}>
           <boxGeometry args={[1,1,1]}/>
           <meshStandardMaterial map={texture_1} attach={'material-0'}/>
