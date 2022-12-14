@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import {  TextureLoader } from 'three';
+import {  Group, TextureLoader } from 'three';
 import { Suspense } from 'react';
 import White from '../textures/white.png'
 import Blue from '../textures/blue-square-2-md.png'
@@ -31,8 +31,8 @@ const RealCube = (props) => {
     const cube7 = useRef()
     const cube8 = useRef()
     const [allCubes,setAllCubes] = useState([cube,cube2,cube3,cube4,cube5,cube6,cube7,cube8])
-
-
+    let helper = 0;
+    
     
 
     let frame = 0
@@ -168,8 +168,17 @@ const RealCube = (props) => {
                 if(frame===9){
                 triggerFrontRight= false
                 frame = 0;
+                helper++
+                console.log(helper)
+                if(helper>3){
+                  helper=0
+
                 }
                 }
+                }
+
+
+
                 if(triggerTopRight){
                     //console.log(cube.current.position)
                     let topSquares = []
@@ -212,14 +221,10 @@ const RealCube = (props) => {
                     // cube.current.position.x = cube2.current.position.x
                     // cube.current.position.y = cube2.current.position.y
                     // cube.current.position.z = cube2.current.position.z
-                    const top=()=>{
-                      <group>
-                        {topSquares.map((el)=>{return el})}
-                      </group>
-                    }
-                    top()
-                    console.log(top())
-                    topSquares[0].current.rotation.y+= degToRad(10)
+                    
+                    //mygroup.children.add(topSquares[0])
+                    //mygroup.props.rotateOnWorldAxis.y=2
+                    // topSquares[0].current.rotateY(degToRad(10))
                     //1.569  
                     
                     
@@ -228,7 +233,7 @@ const RealCube = (props) => {
                     // cube2.current.position.x = cube3.current.position.x
                     // cube2.current.position.y = cube3.current.position.y
                     // cube2.current.position.z = cube3.current.position.z
-                    topSquares[1].current.rotation.y+= degToRad(10)
+                    //topSquares[1].current.rotateY(degToRad(10))
         
                     // cube3.current.position.x = cube4.current.position.x
                     // cube3.current.position.y = cube4.current.position.y
@@ -238,9 +243,30 @@ const RealCube = (props) => {
                     // cube4.current.position.x = dummy.x
                     // cube4.current.position.y = dummy.y
                     // cube4.current.position.z = dummy.z
-                    topSquares[2].current.rotation.y+= degToRad(10)
-                    topSquares[3].current.rotation.y+= degToRad(10)
-
+                    if(helper===0){
+                    topSquares[0].current.rotateY(degToRad(10))
+                    topSquares[1].current.rotateY(degToRad(10))
+                    topSquares[2].current.rotateY(degToRad(10))
+                    topSquares[3].current.rotateY(degToRad(10))
+                    }
+                    if(helper===1){
+                      topSquares[0].current.rotation.y+=(degToRad(10))
+                      topSquares[1].current.rotation.y+=(degToRad(10))
+                      topSquares[2].current.rotation.y+=(degToRad(10))
+                      topSquares[3].current.rotation.y+=(degToRad(10))
+                      }
+                    if(helper===2){
+                      topSquares[0].current.rotateY(degToRad(-10))
+                      topSquares[1].current.rotateY(degToRad(-10))
+                      topSquares[2].current.rotateY(degToRad(-10))
+                      topSquares[3].current.rotateY(degToRad(-10))
+                      }
+                    if(helper===3){
+                      topSquares[0].current.rotation.y+=(degToRad(-10))
+                      topSquares[1].current.rotation.y+=(degToRad(-10))
+                      topSquares[2].current.rotation.y+=(degToRad(-10))
+                      topSquares[3].current.rotation.y+=(degToRad(-10))
+                      }
 
                     
                     
@@ -248,6 +274,8 @@ const RealCube = (props) => {
                     if(frame===9){
                     triggerTopRight= false
                     frame = 0;
+                    
+
                     }
                 }
         }
