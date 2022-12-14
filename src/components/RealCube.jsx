@@ -210,7 +210,8 @@ const RealCube = (props) => {
                     
                     topSquares[0].current.rotation.y+= degToRad(10)
                     //1.569  
-        
+                    
+                    
                     //cube.current.rotation.y+=0.75
         
                     // cube2.current.position.x = cube3.current.position.x
@@ -228,6 +229,10 @@ const RealCube = (props) => {
                     // cube4.current.position.z = dummy.z
                     topSquares[2].current.rotation.y+= degToRad(10)
                     topSquares[3].current.rotation.y+= degToRad(10)
+
+
+                    
+                    
                     frame++
                     if(frame===9){
                     triggerTopRight= false
